@@ -227,7 +227,9 @@ metadata:
   run_ui: false
 
 test_plan:
-  current_focus: []
+  current_focus:
+    - "Company Settings API with Configurable Tarifs"
+    - "Devis Creation API with Dynamic Tarifs"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
@@ -235,5 +237,7 @@ test_plan:
 agent_communication:
   - agent: "main"
     message: "Implemented complete VTC app with company settings, devis creation with automatic TVA calculation, facture conversion, PDF generation. Backend has all CRUD operations for company settings and devis management. Frontend has tabbed interface with settings, devis creation, lists. Ready for backend testing. Manual KM input implemented as requested, Google Maps integration prepared for future."
+  - agent: "main"
+    message: "UPDATED: Added configurable tarifs feature. Company settings now include tarif_transfert_km and tarif_mise_disposition_h fields. Devis creation now uses these configurable tarifs instead of hardcoded values. Frontend updated to show dynamic tarifs in settings page and devis creation page. Need to test backend API with new configurable tarifs functionality."
   - agent: "testing"
     message: "✅ BACKEND TESTING COMPLETE: All 4 backend tasks tested successfully with 100% pass rate (11/11 tests passed). Company Settings API, Devis Creation API, Devis Management API, and Database Models all working correctly. TVA calculations verified, validation working, data persistence confirmed. Created comprehensive backend_test.py for future testing. Backend is fully functional and ready for production."
