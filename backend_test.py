@@ -162,19 +162,19 @@ class VTCAPITester:
         return None
     
     def test_devis_creation_mise_a_disposition(self):
-        """Test POST /api/devis for mise_a_disposition type"""
-        print("\n=== Testing Devis Creation - Mise à Disposition ===")
+        """Test POST /api/devis for mise_a_disposition type with configurable tarifs"""
+        print("\n=== Testing Devis Creation - Mise à Disposition with Custom Tarifs ===")
         
         devis_data = {
             "client": {
-                "nom": "Martin",
-                "prenom": "Marie",
-                "adresse": "5 Place Vendôme, 75001 Paris",
-                "telephone": "06 98 76 54 32",
-                "email": "marie.martin@email.com"
+                "nom": "Test",
+                "prenom": "User2",
+                "adresse": "Test Address",
+                "telephone": "0123456789",
+                "email": "test2@test.com"
             },
             "type_prestation": "mise_a_disposition",
-            "nombre_heures": 3
+            "nombre_heures": 2
         }
         
         try:
