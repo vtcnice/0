@@ -107,51 +107,63 @@ user_problem_statement: "Créer une application VTC pour générer des devis et 
 backend:
   - task: "Company Settings API"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Implemented POST/GET endpoints for company settings with create/update logic"
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: Both POST and GET endpoints working correctly. Company settings creation/update and retrieval tested with real data. All required fields present in responses."
 
   - task: "Devis Creation API"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Implemented devis creation with automatic pricing calculation (2€/km TVA 10% for transfert, 80€/h TVA 20% for mise à disposition)"
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: Devis creation working perfectly. TVA calculations verified: Transfert (50km = 100€ HT + 10€ TVA = 110€ TTC), Mise à disposition (3h = 240€ HT + 48€ TVA = 288€ TTC). Validation working for missing required fields."
 
   - task: "Devis Management API"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Implemented GET devis list, GET single devis, and convert to facture endpoints"
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: All devis management endpoints working. GET /api/devis returns list correctly, GET /api/devis/{id} retrieves single devis, PUT /api/devis/{id}/convert-to-facture converts successfully, GET /api/factures filters factures correctly. Error handling for invalid IDs working (404 responses)."
 
   - task: "Database Models"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Created Pydantic models for CompanySettings, Client, Devis with proper validation"
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: All Pydantic models working correctly. Data validation, serialization/deserialization, UUID generation, datetime handling all functioning properly. MongoDB persistence verified."
 
 frontend:
   - task: "Company Settings UI"
