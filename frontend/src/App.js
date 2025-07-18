@@ -411,7 +411,7 @@ function App() {
                       onChange={handleDevisChange}
                       className="mr-2"
                     />
-                    Mise à disposition ({companySettings.tarif_mise_disposition_h || 80}€/h - TVA 20%)
+                    Mise à disposition ({companySettings.tarif_mise_disposition_h || 80}€HT/h - TVA 20%)
                   </label>
                 </div>
               </div>
