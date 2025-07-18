@@ -32,6 +32,9 @@ class CompanySettings(BaseModel):
     adresse: str
     telephone: str
     email: str
+    # Tarifs configurables
+    tarif_transfert_km: float = 2.0  # 2€/km par défaut
+    tarif_mise_disposition_h: float = 80.0  # 80€/h par défaut
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
 
@@ -41,6 +44,8 @@ class CompanySettingsCreate(BaseModel):
     adresse: str
     telephone: str
     email: str
+    tarif_transfert_km: float = 2.0
+    tarif_mise_disposition_h: float = 80.0
 
 class CompanySettingsUpdate(BaseModel):
     nom_societe: Optional[str] = None
@@ -48,6 +53,8 @@ class CompanySettingsUpdate(BaseModel):
     adresse: Optional[str] = None
     telephone: Optional[str] = None
     email: Optional[str] = None
+    tarif_transfert_km: Optional[float] = None
+    tarif_mise_disposition_h: Optional[float] = None
 
 class Client(BaseModel):
     nom: str
