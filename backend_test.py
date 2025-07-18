@@ -52,15 +52,26 @@ class VTCAPITester:
             
             if response.status_code == 200:
                 data = response.json()
-                # Verify all fields are present
-                required_fields = ["id", "nom_societe", "numero_siret", "adresse", "telephone", "email", "created_at"]
+                # Verify all fields are present including new tarif fields
+                required_fields = ["id", "nom_societe", "numero_siret", "adresse", "telephone", "email", 
+                                 "tarif_transfert_km", "tarif_mise_disposition_h", "created_at"]
                 missing_fields = [field for field in required_fields if field not in data]
                 
-                if not missing_fields:
-                    self.log_test("Company Settings Creation", True, "Company settings created successfully")
+                # Verify tarif values are correctly saved
+                tarifs_correct = (
+                    data.get("tarif_transfert_km") == 2.5 and
+                    data.get("tarif_mise_disposition_h") == 90.0
+                )
+                
+                if not missing_fields and tarifs_correct:
+                    self.log_test("Company Settings Creation", True, 
+                                f"Company settings created with custom tarifs: {data.get('tarif_transfert_km')}€/km, {data.get('tarif_mise_disposition_h')}€/h")
                     return data
-                else:
+                elif missing_fields:
                     self.log_test("Company Settings Creation", False, f"Missing fields in response: {missing_fields}")
+                else:
+                    self.log_test("Company Settings Creation", False, 
+                                f"Incorrect tarif values. Expected: 2.5€/km, 90€/h. Got: {data.get('tarif_transfert_km')}€/km, {data.get('tarif_mise_disposition_h')}€/h")
             else:
                 self.log_test("Company Settings Creation", False, f"HTTP {response.status_code}: {response.text}")
                 
