@@ -302,7 +302,7 @@ function App() {
                     value={companySettings.adresse}
                     onChange={handleCompanySettingsChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Ex: 123 Rue de la Paix, 75001 Paris"
+                    placeholder="Ex: 123 Promenade des Anglais, 06000 Nice"
                   />
                 </div>
                 <div>
