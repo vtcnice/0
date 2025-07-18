@@ -421,15 +421,18 @@ class VTCAPITester:
     
     def run_all_tests(self):
         """Run all tests in sequence"""
-        print(f"🚀 Starting VTC Backend API Tests")
+        print(f"🚀 Starting VTC Backend API Tests - Configurable Tarifs")
         print(f"📍 Testing against: {self.base_url}")
         print("=" * 60)
         
-        # Test company settings
+        # Test error case first (before company settings exist)
+        self.test_devis_without_company_settings()
+        
+        # Test company settings with configurable tarifs
         self.test_company_settings_creation()
         self.test_company_settings_retrieval()
         
-        # Test devis creation and calculations
+        # Test devis creation with dynamic tarifs
         self.test_devis_creation_transfert()
         self.test_devis_creation_mise_a_disposition()
         
