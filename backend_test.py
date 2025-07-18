@@ -262,6 +262,39 @@ class VTCAPITester:
         except Exception as e:
             self.log_test("Devis Validation - Missing Hours", False, f"Request failed: {str(e)}")
     
+    def test_devis_without_company_settings(self):
+        """Test devis creation without company settings configured"""
+        print("\n=== Testing Devis Creation Without Company Settings ===")
+        
+        # First, clear any existing company settings by creating a fresh test
+        # This test should be run before company settings are created
+        devis_data = {
+            "client": {
+                "nom": "Test",
+                "prenom": "User",
+                "adresse": "Test Address",
+                "telephone": "0123456789",
+                "email": "test@test.com"
+            },
+            "type_prestation": "transfert",
+            "adresse_prise_en_charge": "Point A",
+            "adresse_destination": "Point B",
+            "nombre_kilometres": 40
+        }
+        
+        try:
+            response = self.session.post(f"{self.base_url}/devis", json=devis_data)
+            if response.status_code == 400:
+                error_message = response.json().get("detail", "")
+                if "Paramètres de société non configurés" in error_message:
+                    self.log_test("Devis Without Company Settings", True, "Correctly rejected devis creation without company settings")
+                else:
+                    self.log_test("Devis Without Company Settings", False, f"Wrong error message: {error_message}")
+            else:
+                self.log_test("Devis Without Company Settings", False, f"Should have returned 400, got {response.status_code}")
+        except Exception as e:
+            self.log_test("Devis Without Company Settings", False, f"Request failed: {str(e)}")
+    
     def test_devis_list(self):
         """Test GET /api/devis"""
         print("\n=== Testing Devis List ===")
