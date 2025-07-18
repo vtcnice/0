@@ -101,3 +101,123 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "Créer une application VTC pour générer des devis et factures avec calcul TVA automatique, saisie manuelle des kilomètres pour transferts et heures pour mise à disposition, export PDF et sauvegarde des paramètres société."
+
+backend:
+  - task: "Company Settings API"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Implemented POST/GET endpoints for company settings with create/update logic"
+
+  - task: "Devis Creation API"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Implemented devis creation with automatic pricing calculation (2€/km TVA 10% for transfert, 80€/h TVA 20% for mise à disposition)"
+
+  - task: "Devis Management API"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Implemented GET devis list, GET single devis, and convert to facture endpoints"
+
+  - task: "Database Models"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Created Pydantic models for CompanySettings, Client, Devis with proper validation"
+
+frontend:
+  - task: "Company Settings UI"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Created settings form with all company fields and save functionality"
+
+  - task: "Devis Creation UI"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Created devis form with radio buttons for transfert/mise à disposition, dynamic fields, client info form"
+
+  - task: "PDF Generation"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Implemented jsPDF generation for devis and factures with French formatting, company header, client info, pricing breakdown"
+
+  - task: "Devis/Factures Lists"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Created lists for devis and factures with PDF download and convert to facture functionality"
+
+metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 0
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "Company Settings API"
+    - "Devis Creation API"
+    - "Devis Management API"
+    - "Database Models"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+  - agent: "main"
+    message: "Implemented complete VTC app with company settings, devis creation with automatic TVA calculation, facture conversion, PDF generation. Backend has all CRUD operations for company settings and devis management. Frontend has tabbed interface with settings, devis creation, lists. Ready for backend testing. Manual KM input implemented as requested, Google Maps integration prepared for future."
