@@ -107,11 +107,11 @@ user_problem_statement: "Créer une application VTC pour générer des devis et 
 backend:
   - task: "Company Settings API with Configurable Tarifs"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
@@ -122,14 +122,17 @@ backend:
       - working: "NA"
         agent: "main"
         comment: "Added configurable tarifs (tarif_transfert_km and tarif_mise_disposition_h) to company settings model and updated devis creation to use these tarifs"
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: Configurable tarifs functionality working perfectly. Company settings can be created/updated with custom tarifs (tested with 2.5€/km and 90€/h). Both POST and GET endpoints correctly handle the new tarif fields. All data persisted correctly in database."
 
   - task: "Devis Creation API with Dynamic Tarifs"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
@@ -140,6 +143,9 @@ backend:
       - working: "NA"
         agent: "main"
         comment: "Updated devis creation to use configurable tarifs from company settings instead of hardcoded values"
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: Dynamic tarifs functionality working perfectly. Devis creation now uses configurable tarifs from company settings. Verified with user scenarios: 40km × 2.5€ = 100€ HT + 10€ TVA = 110€ TTC for transfert, and 2h × 90€ = 180€ HT + 36€ TVA = 216€ TTC for mise à disposition. All calculations match expected results exactly."
 
   - task: "Devis Management API"
     implemented: true
