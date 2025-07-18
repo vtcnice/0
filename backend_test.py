@@ -132,13 +132,13 @@ class VTCAPITester:
             if response.status_code == 200:
                 data = response.json()
                 
-                # Verify calculations for transfert (2€/km, 10% TVA)
-                expected_prix_ht = 50 * 2.0  # 100€
+                # Verify calculations for transfert with custom tarif (2.5€/km, 10% TVA)
+                expected_prix_ht = 40 * 2.5  # 100€
                 expected_tva = expected_prix_ht * 0.10  # 10€
                 expected_ttc = expected_prix_ht + expected_tva  # 110€
                 
                 calculations_correct = (
-                    data.get("prix_unitaire") == 2.0 and
+                    data.get("prix_unitaire") == 2.5 and
                     data.get("prix_ht") == expected_prix_ht and
                     data.get("taux_tva") == 0.10 and
                     abs(data.get("montant_tva", 0) - expected_tva) < 0.01 and
@@ -147,12 +147,12 @@ class VTCAPITester:
                 
                 if calculations_correct:
                     self.log_test("Devis Creation Transfert", True, 
-                                f"Devis created with correct calculations: {expected_prix_ht}€ HT + {expected_tva}€ TVA = {expected_ttc}€ TTC")
+                                f"Devis created with custom tarif calculations: 40km × 2.5€ = {expected_prix_ht}€ HT + {expected_tva}€ TVA = {expected_ttc}€ TTC")
                     self.created_devis_ids.append(data.get("id"))
                     return data
                 else:
                     self.log_test("Devis Creation Transfert", False, 
-                                f"Incorrect calculations. Expected: {expected_ttc}€ TTC, Got: {data.get('prix_ttc')}€ TTC")
+                                f"Incorrect calculations. Expected: {expected_ttc}€ TTC (with 2.5€/km tarif), Got: {data.get('prix_ttc')}€ TTC")
             else:
                 self.log_test("Devis Creation Transfert", False, f"HTTP {response.status_code}: {response.text}")
                 
