@@ -160,12 +160,12 @@ function App() {
       doc.text(`De: ${document.adresse_prise_en_charge}`, 20, y + 10);
       doc.text(`À: ${document.adresse_destination}`, 20, y + 20);
       doc.text(`Distance: ${document.nombre_kilometres} km`, 20, y + 30);
-      doc.text(`Prix unitaire: 2,00€/km`, 20, y + 40);
+      doc.text(`Prix unitaire: ${document.prix_unitaire.toFixed(2)}€/km`, 20, y + 40);
       y += 50;
     } else {
       doc.text(`Type: Mise à disposition`, 20, y);
       doc.text(`Durée: ${document.nombre_heures} heures`, 20, y + 10);
-      doc.text(`Prix unitaire: 80,00€/h`, 20, y + 20);
+      doc.text(`Prix unitaire: ${document.prix_unitaire.toFixed(2)}€/h`, 20, y + 20);
       y += 30;
     }
     
