@@ -34,15 +34,17 @@ class VTCAPITester:
         })
     
     def test_company_settings_creation(self):
-        """Test POST /api/company-settings"""
-        print("\n=== Testing Company Settings Creation ===")
+        """Test POST /api/company-settings with configurable tarifs"""
+        print("\n=== Testing Company Settings Creation with Configurable Tarifs ===")
         
         company_data = {
-            "nom_societe": "VTC Test Paris",
+            "nom_societe": "VTC Test Tarifs",
             "numero_siret": "12345678901234",
             "adresse": "123 Avenue des Champs-Élysées, 75008 Paris",
             "telephone": "01 23 45 67 89",
-            "email": "contact@vtctest.com"
+            "email": "contact@vtctest.com",
+            "tarif_transfert_km": 2.5,
+            "tarif_mise_disposition_h": 90.0
         }
         
         try:
