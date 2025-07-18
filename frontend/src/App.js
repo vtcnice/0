@@ -400,7 +400,7 @@ function App() {
                       onChange={handleDevisChange}
                       className="mr-2"
                     />
-                    Transfert ({companySettings.tarif_transfert_km}€/km - TVA 10%)
+                    Transfert ({companySettings.tarif_transfert_km || 2}€/km - TVA 10%)
                   </label>
                   <label className="flex items-center">
                     <input
