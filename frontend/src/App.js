@@ -13,7 +13,9 @@ function App() {
     numero_siret: "",
     adresse: "",
     telephone: "",
-    email: ""
+    email: "",
+    tarif_transfert_km: 2.0,
+    tarif_mise_disposition_h: 80.0
   });
   const [devisData, setDevisData] = useState({
     client: {
