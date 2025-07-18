@@ -183,7 +183,7 @@ function App() {
     const { name, value } = e.target;
     setCompanySettings(prev => ({
       ...prev,
-      [name]: value
+      [name]: name.includes('tarif_') ? parseFloat(value) || 0 : value
     }));
   };
 
