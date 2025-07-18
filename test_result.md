@@ -105,13 +105,13 @@
 user_problem_statement: "Créer une application VTC pour générer des devis et factures avec calcul TVA automatique, saisie manuelle des kilomètres pour transferts et heures pour mise à disposition, export PDF et sauvegarde des paramètres société."
 
 backend:
-  - task: "Company Settings API"
+  - task: "Company Settings API with Configurable Tarifs"
     implemented: true
-    working: true
+    working: "NA"
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
       - working: "NA"
         agent: "main"
@@ -119,14 +119,17 @@ backend:
       - working: true
         agent: "testing"
         comment: "✅ TESTED: Both POST and GET endpoints working correctly. Company settings creation/update and retrieval tested with real data. All required fields present in responses."
+      - working: "NA"
+        agent: "main"
+        comment: "Added configurable tarifs (tarif_transfert_km and tarif_mise_disposition_h) to company settings model and updated devis creation to use these tarifs"
 
-  - task: "Devis Creation API"
+  - task: "Devis Creation API with Dynamic Tarifs"
     implemented: true
-    working: true
+    working: "NA"
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
       - working: "NA"
         agent: "main"
@@ -134,6 +137,9 @@ backend:
       - working: true
         agent: "testing"
         comment: "✅ TESTED: Devis creation working perfectly. TVA calculations verified: Transfert (50km = 100€ HT + 10€ TVA = 110€ TTC), Mise à disposition (3h = 240€ HT + 48€ TVA = 288€ TTC). Validation working for missing required fields."
+      - working: "NA"
+        agent: "main"
+        comment: "Updated devis creation to use configurable tarifs from company settings instead of hardcoded values"
 
   - task: "Devis Management API"
     implemented: true
