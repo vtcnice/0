@@ -354,7 +354,7 @@ function App() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Tarif Mise à disposition (€/h)
+                      Tarif Mise à disposition (€HT/h)
                     </label>
                     <input
                       type="number"
