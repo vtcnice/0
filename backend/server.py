@@ -126,21 +126,26 @@ async def get_company_settings():
 # Routes pour les devis
 @api_router.post("/devis", response_model=Devis)
 async def create_devis(devis_data: DevisCreate):
+    # Récupérer les paramètres de société pour les tarifs
+    company_settings = await db.company_settings.find_one()
+    if not company_settings:
+        raise HTTPException(status_code=400, detail="Paramètres de société non configurés. Veuillez configurer vos tarifs d'abord.")
+    
     # Génération du numéro de devis
     count = await db.devis.count_documents({})
     numero_devis = f"DEV-{datetime.now().strftime('%Y%m%d')}-{count + 1:04d}"
     
-    # Calcul des prix selon le type de prestation
+    # Calcul des prix selon le type de prestation avec tarifs configurés
     if devis_data.type_prestation == "transfert":
         if not devis_data.nombre_kilometres:
             raise HTTPException(status_code=400, detail="Nombre de kilomètres requis pour un transfert")
-        prix_unitaire = 2.0  # 2€/km
+        prix_unitaire = company_settings.get("tarif_transfert_km", 2.0)  # Utiliser tarif configuré
         prix_ht = devis_data.nombre_kilometres * prix_unitaire
         taux_tva = 0.10  # 10% TVA
     elif devis_data.type_prestation == "mise_a_disposition":
         if not devis_data.nombre_heures:
             raise HTTPException(status_code=400, detail="Nombre d'heures requis pour une mise à disposition")
-        prix_unitaire = 80.0  # 80€/h
+        prix_unitaire = company_settings.get("tarif_mise_disposition_h", 80.0)  # Utiliser tarif configuré
         prix_ht = devis_data.nombre_heures * prix_unitaire
         taux_tva = 0.20  # 20% TVA
     else:
