@@ -109,21 +109,21 @@ class VTCAPITester:
         return None
     
     def test_devis_creation_transfert(self):
-        """Test POST /api/devis for transfert type"""
-        print("\n=== Testing Devis Creation - Transfert ===")
+        """Test POST /api/devis for transfert type with configurable tarifs"""
+        print("\n=== Testing Devis Creation - Transfert with Custom Tarifs ===")
         
         devis_data = {
             "client": {
-                "nom": "Dupont",
-                "prenom": "Jean",
-                "adresse": "10 Rue de la Paix, 75001 Paris",
-                "telephone": "06 12 34 56 78",
-                "email": "jean.dupont@email.com"
+                "nom": "Test",
+                "prenom": "User",
+                "adresse": "Test Address",
+                "telephone": "0123456789",
+                "email": "test@test.com"
             },
             "type_prestation": "transfert",
-            "adresse_prise_en_charge": "Aéroport CDG",
-            "adresse_destination": "Opéra Paris",
-            "nombre_kilometres": 50
+            "adresse_prise_en_charge": "Point A",
+            "adresse_destination": "Point B",
+            "nombre_kilometres": 40
         }
         
         try:
