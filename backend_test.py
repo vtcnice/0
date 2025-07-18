@@ -89,11 +89,17 @@ class VTCAPITester:
             
             if response.status_code == 200:
                 data = response.json()
-                if data.get("nom_societe") == "VTC Test Paris":
-                    self.log_test("Company Settings Retrieval", True, "Company settings retrieved successfully")
+                expected_tarifs = (
+                    data.get("tarif_transfert_km") == 2.5 and
+                    data.get("tarif_mise_disposition_h") == 90.0 and
+                    data.get("nom_societe") == "VTC Test Tarifs"
+                )
+                if expected_tarifs:
+                    self.log_test("Company Settings Retrieval", True, 
+                                f"Company settings retrieved with correct tarifs: {data.get('tarif_transfert_km')}€/km, {data.get('tarif_mise_disposition_h')}€/h")
                     return data
                 else:
-                    self.log_test("Company Settings Retrieval", False, "Retrieved data doesn't match expected values")
+                    self.log_test("Company Settings Retrieval", False, "Retrieved data doesn't match expected values or tarifs")
             else:
                 self.log_test("Company Settings Retrieval", False, f"HTTP {response.status_code}: {response.text}")
                 
