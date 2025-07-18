@@ -332,6 +332,43 @@ function App() {
                   />
                 </div>
               </div>
+              
+              {/* Tarifs configurables */}
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold mb-4 text-gray-800">Tarifs</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Tarif Transfert (€/km)
+                    </label>
+                    <input
+                      type="number"
+                      step="0.01"
+                      min="0"
+                      name="tarif_transfert_km"
+                      value={companySettings.tarif_transfert_km}
+                      onChange={handleCompanySettingsChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="Ex: 2.00"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Tarif Mise à disposition (€/h)
+                    </label>
+                    <input
+                      type="number"
+                      step="0.01"
+                      min="0"
+                      name="tarif_mise_disposition_h"
+                      value={companySettings.tarif_mise_disposition_h}
+                      onChange={handleCompanySettingsChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="Ex: 80.00"
+                    />
+                  </div>
+                </div>
+              </div>
               <div className="mt-6">
                 <button
                   onClick={saveCompanySettings}
