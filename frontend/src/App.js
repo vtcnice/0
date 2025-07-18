@@ -363,7 +363,7 @@ function App() {
                       onChange={handleDevisChange}
                       className="mr-2"
                     />
-                    Transfert (2€/km - TVA 10%)
+                    Transfert ({companySettings.tarif_transfert_km}€/km - TVA 10%)
                   </label>
                   <label className="flex items-center">
                     <input
@@ -374,7 +374,7 @@ function App() {
                       onChange={handleDevisChange}
                       className="mr-2"
                     />
-                    Mise à disposition (80€/h - TVA 20%)
+                    Mise à disposition ({companySettings.tarif_mise_disposition_h}€/h - TVA 20%)
                   </label>
                 </div>
               </div>
